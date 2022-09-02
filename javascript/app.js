@@ -48,34 +48,34 @@ const showNews = (data) => {
       <div class="card mb-3">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="..." class="img-fluid rounded-start" alt="..." />
+                  <img src="${
+                    news.thumbnail_url
+                  }" class="img-fluid rounded-start" alt="..." />
                 </div>
                 <div class="col-md-8">
 
 
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
+                    <h5 class="card-title">${news.title}</h5>
                     <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
+                      ${news.details}
                     </p>
                   </div>
                   <div class="card-footer d-flex">
                     <div  class="author d-flex">
-                      <img id="author" src="/images/user.png" alt="" />
-                      <h4>name: sakila</h4>
-                      <p>date:1.2.2.3</p>
+                      <img id="author" src="${news.author.img} alt="" />
+                      <h4>name: ${
+                        news.author.name ? news.author.name : "no  name found"
+                      }</h4>
+                      <p>date${news.author.published_date}</p>
                     </div>
-                    <div class="viw d-flex"><i class="fa-solid fa-eye"></i></span>1.6M</div>
+                    <div class="viw d-flex">
+                    <i class="fa-solid fa-eye"></i></span>${
+                      news.total_view
+                    }</div>
                     <div class="ratting d-flex">
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star"></i></li>
-                      <li><i class="fa-solid fa-star-half-stroke"></i></li>
-                      <div class="arow">
-                        <li><i class="fa-solid fa-arrow-right"></i></li>
+                    <li> rating:${news.rating.number}</li>
+                    
                       </div>
                     </div>
                   </div>
