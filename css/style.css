@@ -33,3 +33,8 @@ hr {
   width: 60px;
   object-fit: contain;
 }
+
+img#author {
+  border-radius: 100%;
+  object-fit: contain;
+}

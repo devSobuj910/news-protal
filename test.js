@@ -1,45 +1,53 @@
-const loadCatagory = async() => {
-	try {
-		const url = `https://openapi.programming-hero.com/api/news/categories`;
-		const res = await fetch(url);
-		const datas = await res.json();
-		catagoty(datas.data.news_category);
-	} catch(err) {
-		console.log(err);
-	}
+const loadCatagory = async () => {
+  try {
+    const url = `https://openapi.programming-hero.com/api/news/categories`;
+    const res = await fetch(url);
+    const datas = await res.json();
+    catagoty(datas.data.news_category);
+  } catch (err) {
+    console.log(err);
+  }
 };
+
 const catagoty = (data) => {
-	const navUl = document.getElementById("navbar-menu");
-	data.forEach((sData) => {
-		const creatElemet = document.createElement("li");
-		creatElemet.classList.add("nav-item");
-		creatElemet.innerHTML = `
+  const navUl = document.getElementById("navbar-menu");
+
+  data.forEach((sData) => {
+    const creatElemet = document.createElement("li");
+    creatElemet.classList.add("nav-item");
+    creatElemet.innerHTML = `
 
      <a href="#" onclick="loadNews('${sData.category_id}')">${sData.category_name}</a>
 
     `;
-		navUl.appendChild(creatElemet);
-	});
+    navUl.appendChild(creatElemet);
+  });
 };
+
 loadCatagory();
+
 const loadNews = (category_id) => {
-	const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
-	console.log(url);
-	fetch(url).then((res) => res.json()).then((data) => showNews(data.data));
+  const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
+  console.log(url);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => showNews(data.data));
 };
+
 const showNews = (data) => {
-	const totlaNews = document.getElementById("total-news-item");
-	const lent = data.length;
-	if(lent === 0) {
-		totlaNews.innerText = "news not found";
-	} else {
-		totlaNews.innerText = `${lent} news find this catagory`;
-	}
-	const cardParent = document.getElementById("card-parent");
-	data.forEach((news) => {
-		const cretcardDiv = document.createElement("div");
-		cretcardDiv.classList.add("card");
-		cretcardDiv.innerHTML = `
+  const totlaNews = document.getElementById("total-news-item");
+  const lent = data.length;
+  if (lent === 0) {
+    totlaNews.innerText = "news not found";
+  } else {
+    totlaNews.innerText = `${lent} news find this catagory`;
+  }
+  const cardParent = document.getElementById("card-parent");
+
+  data.forEach((news) => {
+    const cretcardDiv = document.createElement("div");
+    cretcardDiv.classList.add("card");
+    cretcardDiv.innerHTML = `
 
       <div class="card mb-3 " data-bs-toggle="modal" data-bs-target="#card-ditails-modal"  onclick="cardDitails('${
         news._id
@@ -81,18 +89,25 @@ const showNews = (data) => {
             </div>
 
     `;
-		cardParent.appendChild(cretcardDiv);
-	});
+
+    cardParent.appendChild(cretcardDiv);
+  });
 };
+
 const cardDitails = (news_id) => {
-	const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
-	console.log(url);
-	fetch(url).then((res) => res.json()).then((data) => showDitails(data.data[0]));
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+  console.log(url);
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => showDitails(data.data[0]));
 };
+
 const showDitails = (data) => {
-	console.log(data);
-	const mdalparent = document.getElementById("modal-dilog");
-	mdalparent.innerHTML = `
+  console.log(data);
+
+  const mdalparent = document.getElementById("modal-dilog");
+  mdalparent.innerHTML = `
     <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">
@@ -128,3 +143,4 @@ const showDitails = (data) => {
 
   `;
 };
+//
