@@ -44,7 +44,7 @@ const showNews = (data) => {
     const cretcardDiv = document.createElement("div");
     cretcardDiv.classList.add("card");
     cretcardDiv.innerHTML = `
-    
+
       <div class="card mb-3">
               <div class="row g-0">
                 <div class="col-md-4">
@@ -53,7 +53,6 @@ const showNews = (data) => {
                   }" class="img-fluid rounded-start" alt="..." />
                 </div>
                 <div class="col-md-8">
-
 
                   <div class="card-body">
                     <h5 class="card-title">${news.title}</h5>
@@ -75,23 +74,14 @@ const showNews = (data) => {
                     }</div>
                     <div class="ratting d-flex">
                     <li> rating:${news.rating.number}</li>
-                    
+
                       </div>
                     </div>
                   </div>
                 </div>
-
-
-
-
-
-                
               </div>
             </div>
-    
-    
-    
-    
+
     `;
 
     cardParent.appendChild(cretcardDiv);
