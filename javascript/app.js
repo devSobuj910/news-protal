@@ -16,11 +16,9 @@ const catagoty = (data) => {
     const creatElemet = document.createElement("li");
     creatElemet.classList.add("nav-item");
     creatElemet.innerHTML = `
-    
 
      <a href="#" onclick="loadNews('${sData.category_id}')">${sData.category_name}</a>
-    
-    
+
     `;
     navUl.appendChild(creatElemet);
   });
@@ -37,7 +35,13 @@ const loadNews = (category_id) => {
 };
 
 const showNews = (data) => {
-  console.log(data);
+  const totlaNews = document.getElementById("total-news-item");
+  const lent = data.length;
+  if (lent === 0) {
+    totlaNews.innerText = "news not found";
+  } else {
+    totlaNews.innerText = `${lent} news find this catagory`;
+  }
   const cardParent = document.getElementById("card-parent");
 
   data.forEach((news) => {
@@ -45,7 +49,9 @@ const showNews = (data) => {
     cretcardDiv.classList.add("card");
     cretcardDiv.innerHTML = `
 
-      <div class="card mb-3">
+      <div class="card mb-3 " data-bs-toggle="modal" data-bs-target="#card-ditails-modal"  onclick="cardDitails('${
+        news._id
+      }')">
               <div class="row g-0">
                 <div class="col-md-4">
                   <img src="${
@@ -86,4 +92,54 @@ const showNews = (data) => {
 
     cardParent.appendChild(cretcardDiv);
   });
+};
+
+const cardDitails = (news_id) => {
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+  console.log(url);
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => showDitails(data.data[0]));
+};
+
+const showDitails = (data) => {
+  console.log(data);
+
+  const mdalparent = document.getElementById("modal-dilog");
+  mdalparent.innerHTML = `
+    <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">
+    ${data.title}
+          </h5>
+
+       
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+         <p>${data.details}</p>
+         <span>Total-view: <i class="fa-solid fa-eye"> </i> ${data.total_view}</span>
+        
+        </div>
+        
+        <div class="modal-footer">
+
+        
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+  `;
 };
