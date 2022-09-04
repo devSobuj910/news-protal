@@ -68,7 +68,7 @@ const showNews = (data) => {
             <div class="card-body">
                 <h5 class="card-title">${news.title}</h5>
                 <p class="card-text">
-                    ${news.details.slice(0, 400) + "..."}
+                    ${news.details.slice(0, 400) + "......"}
                 </p>
             </div>
             <div class="card-footer d-flex justify-content-between bg-white border-0 flex-md-column">
@@ -124,10 +124,32 @@ const cardDitails = (_id) => {
 const showDitails = (data) => {
   console.log(data);
 
-  const newsModalDetail = document.getElementById("detailsModalLabel");
-  newsModalDetail.innerText = data.title;
-  const newsModalBody = document.getElementById("modal-body");
-  newsModalBody.innerText = data.details;
+  const newsModalDetail = document.getElementById("modal-dailog");
+
+   newsModalDetail.innerHTML = `
+  
+  
+   <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModalLabel">${data.title}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal-body" class="modal-body">
+            <P>${data.details}</P>
+        </div>
+
+        <div class="d-flex ms-3  justify-content-between">
+        <span>Author-name: ${data.author.name}</span>
+        <span me-5> Rating : ${data.rating.badge}</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+  
+  
+  `
 };
 
 let toggolSpiner = (isLoading) => {
