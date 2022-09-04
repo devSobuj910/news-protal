@@ -99,9 +99,21 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+  <!-- footer -->
+
+<footer>
+
+
   <div class="text-center mt-5">
     <h6>Copyright 2021 News Portal</h6>
   </div>
+
+  </footer>
 
   <!-- bootstrap cdn -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -114,48 +126,3 @@
 </html>
 
 
-
-<div class="card mb-3 p-2 border-0 " data-bs-toggle="modal" data-bs-target="#detailsModal"
-  onclick="cardDitails('${news._id}')">
-  <div class="row g-0">
-    <div class="col-md-3">
-      <img src="${
-              news.thumbnail_url
-            }" class="img-fluid rounded-start" alt="..." />
-    </div>
-    <div class="col-md-9">
-      <div class="card-body">
-        <h5 class="card-title">${news.title}</h5>
-        <p class="card-text">
-          ${news.details.slice(0, 400) + "..."}
-        </p>
-      </div>
-      <div class="card-footer d-flex justify-content-between bg-white border-0">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center" style:""><img class="rounded-circle " style="width:10%;" id="author"
-              src="${news.author.img} alt="" />
-                        <div class=" p-2">
-            <h4>Name: ${
-              news.author.name
-              ? news.author.name
-              : "no name found"
-              }</h4>
-            <span>Date:${news.author.published_date}</span>
-          </div>
-        </div>
-        <div class="d-flex justify-content-between ">
-
-          <span class="me-2"><i class="fa-regular fa-eye"></i></span>
-          <span>${
-            news.total_view ? news.total_view : "No view"
-            }</span>
-        </div>
-
-        <div class="d-flex ">
-          <span>Ratting: ${news.rating.number}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>

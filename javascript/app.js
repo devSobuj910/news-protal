@@ -59,19 +59,19 @@ const showNews = (data) => {
         <div class="card mb-3 p-2 border-0 " data-bs-toggle="modal" data-bs-target="#detailsModal"
     onclick="cardDitails('${news._id}')">
     <div class="row g-0">
-        <div class="col-md-3">
+        <div class="col-md-3 flex-md-column">
             <img src="${
               news.thumbnail_url
             }" class="img-fluid rounded-start" alt="..." />
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 flex-md-column">
             <div class="card-body">
                 <h5 class="card-title">${news.title}</h5>
                 <p class="card-text">
                     ${news.details.slice(0, 400) + "..."}
                 </p>
             </div>
-            <div class="card-footer d-flex justify-content-between bg-white border-0">
+            <div class="card-footer d-flex justify-content-between bg-white border-0 flex-md-column">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center" style:""><img
                             class="rounded-circle " style="width:10%;"
